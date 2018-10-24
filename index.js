@@ -129,9 +129,7 @@ io.on('connection', function(socket) {
         }
      */
 
-     socket.emit("init",{
-         socketId : socket.id
-     })
+   
      
     socket.on("createRoom", ({user,roomId}) => {
         let room = createRoom({user,roomId,io,socket});
@@ -181,6 +179,7 @@ io.on('connection', function(socket) {
         socket.roundNum = 0;
     })
 
+ 
     /*
         准备按钮点击响应事件
     */
@@ -212,7 +211,11 @@ io.on('connection', function(socket) {
         roomEmiter.readyCountingStart = true;
     })
 
-
+    socket.on("getSocketId",function(){
+        socket.emit("init",{
+            socketId : socket.id
+        })
+    })
 
     socket.on("updateBanLocation",moveParam => {
         socket.ban = {
