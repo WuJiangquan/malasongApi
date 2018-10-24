@@ -17,7 +17,7 @@ app.all("*",(req,res,next)=>{
     res.header("Access-Control-AllowOrigin","*");
     res.header("Access-Control-Headers","X-Request-With");
     res.header("Access-Control-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("content-type","application/json;charset=utf-8");
+    res.header("content-type","*/*;charset=utf-8");
     next();
 })
 
@@ -130,6 +130,7 @@ io.on('connection', function(socket) {
      */
      
     socket.on("createRoom", ({user,roomId}) => {
+        console.log("create room");
         createRoom({user,roomId,io,socket});
     })
 
@@ -235,7 +236,7 @@ io.on('connection', function(socket) {
            width : guoWidth
         }
         var {firtSocket} = getSocketsInRoom(io.sockets.in(socket.currentRoomId),socket.currentRoomId);
-        if(firtSocket.id !== socket.id){
+        if(firtSocket&&firtSocket.id !== socket.id){
             return ;
         }
         let timmer = new Timmer({
