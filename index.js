@@ -18,6 +18,7 @@ app.all("*",(req,res,next)=>{
     res.header("Access-Control-Headers","X-Request-With");
     res.header("Access-Control-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("content-type","*/*;charset=utf-8");
+    console.log(req);
     next();
 })
 
@@ -301,8 +302,11 @@ io.on('connection', function(socket) {
     })
 
     socket.on('disconnect', (reason) => {
-        socket.leave(socket.currentRoomId)
-        socket.currentRoomId = null;
+        console.log(socket.id)
+        console.log("重连");
+        console.log(reason)
+        // socket.leave(socket.currentRoomId)
+        // socket.currentRoomId = null;
     });
 });
 
