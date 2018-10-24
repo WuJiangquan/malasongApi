@@ -128,6 +128,10 @@ io.on('connection', function(socket) {
             roomId : 被邀请的房间信息，如果是邀请的，则为空，为空的时候创建房间
         }
      */
+
+     socket.emit("init",{
+         socketId : socket.id
+     })
      
     socket.on("createRoom", ({user,roomId}) => {
         let room = createRoom({user,roomId,io,socket});
