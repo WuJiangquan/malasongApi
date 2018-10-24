@@ -119,7 +119,9 @@ let createRoom = function({user,roomId,io,socket}){
 
 //socket部分
 io.on('connection', function(socket) {
-   
+    socket.emit("init",{
+        socketId : socket.id
+    })
 
      /*
         开局创建房间，邀请和被邀请的区别在于是否有出事的roomId
@@ -211,11 +213,6 @@ io.on('connection', function(socket) {
         roomEmiter.readyCountingStart = true;
     })
 
-    socket.on("getSocketId",function(){
-        socket.emit("init",{
-            socketId : socket.id
-        })
-    })
 
     socket.on("updateBanLocation",moveParam => {
         socket.ban = {
