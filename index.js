@@ -7,8 +7,8 @@ let Timmer = require("./Timmer");
 const roles = require("./roles")
 let {getSocketsInRoom} = require("./utile")
 var io = require('socket.io')(server,{
-    pingInterval: 10000,
-    pingTimeout: 50000
+    pingInterval: 1000  ,
+    pingTimeout: 5000 * 60
 });
 
 var rooms = require("./rooms");
