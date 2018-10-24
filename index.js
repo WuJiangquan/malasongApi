@@ -160,6 +160,9 @@ io.on('connection', function(socket) {
     socket.on("selectRole",roleId => {
         var role = roles.map(roleId);
         socket.role = role;
+        console.log(socket.id + "选择了橘色")
+
+        console.log(roleId)
         broadcastRoleInfo(io.sockets.in(socket.currentRoomId),socket);
         socket.emit("sbChangeRole",{
             [socket.id] :  role
