@@ -130,8 +130,11 @@ io.on('connection', function(socket) {
      */
      
     socket.on("createRoom", ({user,roomId}) => {
+        let room = createRoom({user,roomId,io,socket});
         console.log("create room");
-        createRoom({user,roomId,io,socket});
+        console.log(user);
+        console.log(user.nickName);
+        console.log(room.id);
     })
 
     /*
