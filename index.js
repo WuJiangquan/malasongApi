@@ -301,6 +301,7 @@ io.on('connection', function(socket) {
     })
 
     socket.on('disconnect', (reason) => {
+        console.log(new Date())
         console.log(socket.id)
         console.log("重连");
         console.log(reason)
